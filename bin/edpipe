@@ -1,0 +1,9 @@
+#!/bin/bash
+
+EDPIPE_TEMP=/tmp/edpipe.$$
+trap 'rm -fr $EDPIPE_TEMP' EXIT HUP INT QUIT PIPE TERM
+
+cat > $EDPIPE_TEMP
+${EDITOR-vi} $EDPIPE_TEMP </dev/tty >/dev/tty 2>&1
+cat $EDPIPE_TEMP
+
